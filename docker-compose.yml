@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  # PHP + Apache 服务,运行漏洞CMS网站
+  web:
+    build: .
+    container_name: vuln-cms-web
+    ports:
+      - "8099:80"
+    environment:
+      DB_HOST: mysql          # 容器内访问数据库,用服务名"mysql"而不是localhost
+      DB_USER: root
+      DB_PASS: campus123456
+      DB_NAME: campus_cms
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+  # MySQL 数据库服务
+  mysql:
+    image: mysql:5.7
+    container_name: vuln-cms-mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: campus123456
+      MYSQL_DATABASE: campus_cms
+    volumes:
+      # 把 database.sql 挂载到MySQL镜像的初始化目录,
+      # 容器第一次启动时会自动执行这个sql文件建表+插入数据,
+      # 之后每次启动(只要数据卷没删)不会重复执行
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+      - vuln-cms-mysql-data:/var/lib/mysql
+    ports:
+      - "3307:3306"           # 映射到宿主机3307端口,方便用Navicat等工具连接调试(避免和宿主机已有MySQL冲突)
+    restart: unless-stopped
+
+volumes:
+  vuln-cms-mysql-data:
