@@ -63,7 +63,7 @@ phpStudy（小皮面板）中启动：
 http://localhost/vuln-campus-cms/src/vuln/
 ```
 
-能正常打开首页、登录页（login.php）即部署成功。测试账号见仓库主 README。
+能正常打开首页、登录页（login.php）即部署成功。测试账号随 `database.sql` 内置，账号密码见渗透测试报告。
 
 ## 方式二：Docker 部署
 

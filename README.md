@@ -66,13 +66,7 @@ vuln-campus-cms/
 
 ## 测试账号
 
-| 用户名 | 密码 | 角色 |
-|---|---|---|
-| admin | Adm1n@2026Secret | 管理员 |
-| zhangwei | zhangwei123 | 普通用户 |
-| linna | linna123 | 普通用户 |
-| wangqiang | wangqiang123 | 普通用户 |
-| chenjing | chenjing123 | 普通用户 |
+演示账号不直接公开，导入 `database.sql` 后即可获得全部测试数据（含管理员与普通用户账号），账号密码可见渗透测试报告。
 
 ## 配套报告
 
