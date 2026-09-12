@@ -1,0 +1,5 @@
+# 上传目录安全加固: 禁止执行任何脚本(配合 upload.php 的白名单校验,双保险)
+# 采用 Apache 2.4 通用写法,兼容 mod_php 与 FCGI 两种模式
+<FilesMatch "\.(php|php3|php4|php5|php7|phtml|phar|asp|aspx|jsp|cgi|pl)$">
+    Require all denied
+</FilesMatch>
