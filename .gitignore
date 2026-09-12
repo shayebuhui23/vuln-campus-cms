@@ -1,0 +1,13 @@
+# 通用排除
+.DS_Store
+Thumbs.db
+*.log
+
+# 上传目录的运行时产物（用户上传的图片等），保留说明文件与 .htaccess
+src/vuln/uploads/*
+!src/vuln/uploads/README.txt
+!src/vuln/uploads/evil.txt
+!src/vuln/uploads/.htaccess
+src/fixed/uploads/*
+!src/fixed/uploads/README.txt
+!src/fixed/uploads/.htaccess
