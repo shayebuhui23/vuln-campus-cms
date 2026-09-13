@@ -28,6 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ip'])) {
      */
     $cmd = "ping -n 2 " . $ip;
     $output = shell_exec($cmd . ' 2>&1');
+    // Windows 中文系统的 cmd 输出为 GBK 编码,页面是 UTF-8;
+    // 若不转码,htmlspecialchars() 遇到无效 UTF-8 序列会返回空字符串,导致结果"消失"
+    if ($output !== null && !mb_check_encoding($output, 'UTF-8')) {
+        $output = mb_convert_encoding($output, 'UTF-8', 'GBK');
+    }
 }
 
 $page_title = '系统工具';
